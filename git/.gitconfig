@@ -1,0 +1,26 @@
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+[apply]
+  whitespace = nowarn
+[user]
+  name = Michael Schoonmaker
+  email = michael.r.schoonmaker@gmail.com
+[difftool]
+  prompt = false
+[core]
+  excludesfile = ~/.gitignore_global
+	editor = vim
+[alias]
+  co = checkout
+  publish = push origin HEAD
+  deploy = push deploy HEAD
+  branches = !~/Scripts/git-describe-branches.pl
+  add-desc = !~/Scripts/git-add-description.sh
+  fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+  ri = rebase --interactive --autosquash
+[merge]
+  ff = only

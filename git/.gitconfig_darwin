@@ -1,0 +1,11 @@
+[credential]
+  helper = osxkeychain
+[diff]
+  tool = DiffMerge
+[merge]
+  tool = DiffMerge
+[difftool "DiffMerge"]
+  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "DiffMerge"]
+  cmd = "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+  trustExitCode = true
