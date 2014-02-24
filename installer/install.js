@@ -10,6 +10,7 @@ ln('-sf', compile('git/.gitconfig'), resolve('~/.gitconfig'))
 ln('-sf', compile('git/.gitignore_global'), resolve('~/.gitignore_global'))
 
 // SSH
+mkdir('-p', resolve('~/.ssh'))
 ln('-sf', compile('ssh/config'), resolve('~/.ssh/config'))
 
 // Vim
