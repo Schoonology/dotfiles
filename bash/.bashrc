@@ -1,6 +1,6 @@
 export CLICOLOR=1
 
-alias .='cd .'
+alias .=pwd
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -16,8 +16,8 @@ alias httpdump="sudo tcpdump -A -s0"
 alias ll="ls -Alp"
 
 # Git Autocompletion and PS1
-source ~/Scripts/git-prompt.sh
-source ~/Scripts/git-completion.sh
+source ~/.dotfiles/git/git-prompt.sh
+source ~/.dotfiles/git/git-completion.sh
 
 GIT_PS1_SHOWDIRTYSTATE=1 #... untagged(*) and staged(+) changes
 GIT_PS1_SHOWSTASHSTATE=1 #... if something is stashed($)

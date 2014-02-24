@@ -1,3 +1,6 @@
+# Versions
+alias ruby=/usr/local/bin/ruby
+alias gem=/usr/local/bin/gem
 
 # Installed applications
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
