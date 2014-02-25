@@ -2,3 +2,6 @@ Host github.com
   IdentityFile ~/.ssh/id_rsa_github
 Host bitbucket.org
   IdentityFile ~/.ssh/id_rsa_bb
+Host heroku.com
+  IdentityFile ~/.ssh/id_rsa_heroku
+
