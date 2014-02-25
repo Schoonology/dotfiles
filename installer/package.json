@@ -5,6 +5,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "shelljs": "arturadib/shelljs"
+    "shelljs": "git://github.com/Schoonology/shelljs"
   }
 }

@@ -1,6 +1,6 @@
 var fs = require('fs')
   , path = require('path')
-  , spawn = require('child_process').spawn
+  , exec = require('child_process').exec
 
 // Handle ~ as Bash does.
 global.resolve = resolve
@@ -15,9 +15,15 @@ function bootstrap(callback) {
     return callback()
   } catch (e) {}
 
-  spawn('npm', ['install', '--no-bin-links'], {
+  exec('npm install --no-bin-links', {
     cwd: __dirname
-  }).on('exit', function () {
+  }, function (err) {
+    if (err) {
+      console.error('Failed to install shelljs.')
+      console.error('Error:', err.message)
+      process.exit(1)
+    }
+
     require('shelljs/global')
     return callback()
   })
