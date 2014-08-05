@@ -1,11 +1,20 @@
 var fs = require('fs')
   , path = require('path')
   , exec = require('child_process').exec
+  , HOME = process.env.HOME || process.env.HOMEDRIVE + process.env.HOMEPATH
+
+if (!HOME) {
+  console.error(
+    'No HOME environment variables available. ' +
+    'Dotfiles cannot be installed.'
+  )
+  process.exit(1)
+}
 
 // Handle ~ as Bash does.
 global.resolve = resolve
 function resolve(file) {
-  return path.normalize(file.replace(/~/g, process.env.HOME))
+  return path.normalize(file.replace(/~/g, HOME))
 }
 
 // Bootstrap shelljs into global scope, installing it first if necessary.
