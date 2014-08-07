@@ -78,4 +78,6 @@ elif ! agent_has_keys; then
   add_all_keys
 fi
 
+echo `ssh-add -l | wc -l` SSH keys registered.
+
 unset env
