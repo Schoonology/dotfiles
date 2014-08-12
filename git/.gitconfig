@@ -23,5 +23,6 @@
   squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
   ri = rebase --interactive --autosquash
   wayback = !sh -c 'git checkout `git rev-list -n 1 --before="$1" HEAD`'
+  amend = commit --amend -C HEAD
 [merge]
   ff = only
