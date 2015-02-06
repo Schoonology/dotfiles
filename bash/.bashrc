@@ -12,7 +12,7 @@ alias ndoe=node
 # Shortcuts
 alias now='node -p -e "Date.now()"'
 alias httpdump="sudo tcpdump -A -s0"
-alias ll="ls -Alp --color"
+alias ll="ls -Alp"
 
 # Git Autocompletion and PS1
 source ~/.dotfiles/git/git-prompt.sh
