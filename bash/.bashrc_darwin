@@ -11,4 +11,6 @@ alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resour
 
 # Remove bouncing
 defaults write com.apple.dock no-bouncing -bool TRUE
+defaults write com.apple.dock expose-animation-duration -float 0.25
+defaults write com.apple.dock workspaces-swoosh-animation-off -bool YES
 
