@@ -1,17 +1,67 @@
 // Link all the dotfiles, and install all the things.
-// By the time this file is run, shelljs has been loaded into global scope and
-// `resolve` is available for bash-style ~ handling.
+var path = require('path')
+  , sh = require('shelljs')
+
+// Handle ~ as Bash does.
+function aTarget(file) {
+  return path.normalize(file.replace(/~/g, process.env.HOME))
+}
+
+// Absolute source file paths.
+function aSource(file) {
+  return path.resolve(__dirname, '..', file)
+}
+
+// HOME-relative source file paths
+function rSource(file) {
+  return path.relative(process.env.HOME, aSource(file))
+}
+
+// CWD-relative source file paths
+function lSource(file) {
+  return path.relative(process.cwd(), aSource(file))
+}
+
+// Detects the complete list of file paths that should be included or linked.
+function detectSources(file) {
+  var sources = []
+
+  if (sh.test('-f', aSource(file))) {
+    sources.push(file)
+  }
+
+  if (sh.test('-f', aSource(file + '_' + process.platform))) {
+    sources.push(file + '_' + process.platform)
+  }
+
+  return sources
+}
 
 // Bash
-ln('-sf', compile('bash/.bashrc'), resolve('~/.bashrc'))
+sh.rm('-f', aTarget('~/.bashrc'))
+detectSources('bash/.bashrc')
+  .reduce(function (str, file) {
+    return str + 'source ~/' + rSource(file) + '\n'
+  }, '')
+  .to(aTarget('~/.bashrc'))
 
 // Git
-ln('-sf', compile('git/.gitconfig'), resolve('~/.gitconfig'))
-ln('-sf', compile('git/.gitignore_global'), resolve('~/.gitignore_global'))
+sh.rm('-f', aTarget('~/.gitconfig'))
+detectSources('git/.gitconfig')
+  .reduce(function (str, file) {
+    return str + '[include]\n  path = ' + rSource(file) + '\n'
+  }, '')
+  .to(aTarget('~/.gitconfig'))
+sh.ln('-sf', lSource('git/.gitignore_global'), aTarget('~/.gitignore_global'))
 
 // SSH
-mkdir('-p', resolve('~/.ssh'))
-ln('-sf', compile('ssh/config'), resolve('~/.ssh/config'))
+sh.mkdir('-p', aTarget('~/.ssh'))
+sh.ln('-sf', lSource('ssh/config'), aTarget('~/.ssh/config'))
 
 // Vim
-ln('-sf', compile('vim/.vimrc'), resolve('~/.vimrc'))
+sh.rm('-f', aTarget('~/.vimrc'))
+detectSources('vim/.vimrc')
+  .reduce(function (str, file) {
+    return str + 'source ~/' + rSource(file) + '\n'
+  }, '')
+  .to(aTarget('~/.vimrc'))

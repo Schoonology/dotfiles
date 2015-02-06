@@ -1,26 +1,22 @@
 var fs = require('fs')
   , path = require('path')
   , exec = require('child_process').exec
-  , HOME = process.env.HOME || process.env.HOMEDRIVE + process.env.HOMEPATH
 
-if (!HOME) {
+// Normalize HOME environment variable.
+process.env.HOME = process.env.HOME || process.env.HOMEDRIVE + process.env.HOMEPATH
+
+if (!process.env.HOME) {
   console.error(
-    'No HOME environment variables available. ' +
-    'Dotfiles cannot be installed.'
+    'No HOME environment variables available. Dotfiles cannot be installed.'
   )
   process.exit(1)
 }
 
-// Handle ~ as Bash does.
-global.resolve = resolve
-function resolve(file) {
-  return path.normalize(file.replace(/~/g, HOME))
-}
-
-// Bootstrap shelljs into global scope, installing it first if necessary.
+// Install our dependencies if necessary, calling `callback` upon successful
+// completion.
 function bootstrap(callback) {
   try {
-    require('shelljs/global')
+    require('shelljs')
     return callback()
   } catch (e) {}
 
@@ -33,36 +29,10 @@ function bootstrap(callback) {
       process.exit(1)
     }
 
-    require('shelljs/global')
+    require('shelljs')
     return callback()
   })
 }
 
-// Compiles all platform-specific files down to a single file,
-// ready for installation.
-global.compile = compile
-function compile(source) {
-  var target
-
-  target = path.resolve(process.cwd(), 'compiled', source)
-  source = path.resolve(process.cwd(), source)
-
-  mkdir('-p', path.dirname(target))
-  cat(source).to(target)
-
-  if (test('-f', source + '_' + process.platform)) {
-    cat(source + '_' + process.platform).toEnd(target)
-  }
-
-  // Shelljs's `ln -sf` is relative to `process.cwd()`, and this guarantees
-  // the links are valid if the world moves.
-  return path.relative(process.cwd(), target)
-}
-
-// Link all the dotfiles, and install all the things.
-function install() {
-  require('./install')
-}
-
 // Go!
-bootstrap(install)
+bootstrap(function () { require ('./install') })
