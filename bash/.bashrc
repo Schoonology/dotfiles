@@ -26,6 +26,13 @@ GIT_PS1_SHOWUNTRACKEDFILES=1 #... untracked files(%)
 # export PS1='`if [ $? = 0 ]; then echo "\[\e[32m\]✔"; else echo "\[\e[31m\]✘"; fi` \[\e[00;37m\]\W`__git_ps1`\$ '
 export PS1='`if [ $? = 0 ]; then echo "\[\e[32m\]✔"; else echo "\[\e[31m\]✘"; fi` `[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "\[\e[01;31m\]" || echo "\[\e[01;32m\]"`$(__git_ps1 "(%s)\[\e[00m\]") \[\e[01;37m\]\W\[\e[00m\]\$ '
 
+# NPM Config
+npm set depth=0
+npm set save=true
+npm set save-prefix=~
+npm set prefix=~/.npm
+export PATH=$PATH:~/.npm/bin
+
 # SSH Agent
 # Note: ~/.ssh/environment should not be used, as it
 #       already has a different purpose in SSH.
