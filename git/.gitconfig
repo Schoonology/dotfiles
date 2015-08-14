@@ -24,5 +24,7 @@
   ri = rebase --interactive --autosquash
   wayback = !sh -c 'git checkout `git rev-list -n 1 --before="$1" HEAD`'
   amend = commit --amend -C HEAD
+  ll = log --graph --decorate --oneline
+  lll = log --graph --decorate --pretty='%C(auto)%h%d %s%n- %aN <%ae>%Creset%n'
 [merge]
   ff = only
