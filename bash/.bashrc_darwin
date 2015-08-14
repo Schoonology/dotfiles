@@ -8,6 +8,7 @@ alias subl="/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl"
 alias canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 alias diffmerge="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
 alias jsc="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Atom"
 
 # Remove bouncing
 defaults write com.apple.dock no-bouncing -bool TRUE
