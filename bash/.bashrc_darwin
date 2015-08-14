@@ -15,3 +15,9 @@ defaults write com.apple.dock no-bouncing -bool TRUE
 defaults write com.apple.dock expose-animation-duration -float 0.25
 defaults write com.apple.dock workspaces-swoosh-animation-off -bool YES
 
+# TODO(schoon) - Automate setting the following values:
+# - In ~/Library/Preferences/com.apple.symbolichotkeys.plist:
+#   - 34, 35, 37, 63, 76 - "enabled" -> "NO"
+
+npm set prefix ~/.npm
+export PATH=$PATH:~/.npm/bin
