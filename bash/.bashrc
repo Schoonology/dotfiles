@@ -33,6 +33,8 @@ npm set save-prefix=~
 npm set prefix=~/.npm
 export PATH=$PATH:~/.npm/bin
 
+. <(npm completion)
+
 # SSH Agent
 # Note: ~/.ssh/environment should not be used, as it
 #       already has a different purpose in SSH.
