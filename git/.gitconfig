@@ -28,3 +28,6 @@
   lll = log --graph --decorate --pretty='%C(auto)%h%d %s%n- %aN <%ae>%Creset%n'
 [merge]
   ff = only
+[status]
+  short = true
+  branch = true
