@@ -26,6 +26,7 @@
   amend = commit --amend -C HEAD
   ll = log --graph --decorate --oneline
   lll = log --graph --decorate --pretty='%C(auto)%h%d %s%n- %aN <%ae>%Creset%n'
+  context = !~/.dotfiles/git/git-context.sh
 [merge]
   ff = only
 [status]
