@@ -112,5 +112,11 @@ step([
         return str + 'source ~/' + rSource(file) + '\n'
       }, '')
       .to(aTarget('~/.vimrc'))
+
+    // iTerm
+    if (process.platform === 'darwin') {
+      sh.rm('-f', aTarget('~/.iterm/com.googlecode.iterm2.plist'))
+      sh.ln('-sf', lSource('iterm/config.plist'), aTarget('~/.iterm/com.googlecode.iterm2.plist'))
+    }
   }
 ])
