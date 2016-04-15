@@ -6,8 +6,7 @@
 [apply]
   whitespace = nowarn
 [user]
-  name = Michael Schoonmaker
-  email = michael.r.schoonmaker@gmail.com
+  useConfigOnly = true
 [difftool]
   prompt = false
 [core]
