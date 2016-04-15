@@ -11,7 +11,7 @@
   prompt = false
 [core]
   excludesfile = ~/.gitignore_global
-	editor = vim
+  editor = vim
 [alias]
   co = checkout
   publish = push origin HEAD
@@ -23,11 +23,20 @@
   ri = rebase --interactive --autosquash
   wayback = !sh -c 'git checkout `git rev-list -n 1 --before="$1" HEAD`'
   amend = commit --amend -C HEAD
+  credit = commit --amend --author "$1 <$2>" -C HEAD
   ll = log --graph --decorate --oneline
   lll = log --graph --decorate --pretty='%C(auto)%h%d %s%n- %aN <%ae>%Creset%n'
   context = !~/.dotfiles/git/git-context.sh
+  undo = reset --soft HEAD^
+  cleanup = !sh -c 'git remote | xargs -n 1 git remote prune && git branch --merged | grep -v \"*\" | xargs -n 1 git branch -d'
 [merge]
   ff = only
 [status]
   short = true
   branch = true
+[help]
+  autocorrect = 1
+[rerere]
+  enabled = 1
+[push]
+  default = current
